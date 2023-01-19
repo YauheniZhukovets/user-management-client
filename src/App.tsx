@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import {AppRouter} from "./components/AppRouter";
+import {Spinner} from "react-bootstrap";
+import {initializeApp} from "./store/thunk/authThunk";
+import {useAppDispatch, useAppSelector} from "./hooks/hooks";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+    const dispatch = useAppDispatch()
+    const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
+    const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            dispatch(initializeApp())
+        }
+    }, [dispatch, isLoggedIn])
+
+    if (!isInitialized) {
+        return <Spinner animation="grow"/>
+    }
+
+    return (
+        <div>
+            <AppRouter/>
+        </div>
+    )
 }
-
-export default App;
