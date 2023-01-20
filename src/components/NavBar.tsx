@@ -8,7 +8,7 @@ type NavBarType = {
     removeUsers: () => void
 }
 
-export const NavBar: React.FC<NavBarType> = ({removeUsers, baneUsers}) => {
+export const NavBar: React.FC<NavBarType> = React.memo(({removeUsers, baneUsers}) => {
     const dispatch = useAppDispatch()
 
     const logOut = () => {
@@ -24,13 +24,13 @@ export const NavBar: React.FC<NavBarType> = ({removeUsers, baneUsers}) => {
                         <Button className="m-1"
                                 onClick={baneUsers}
                                 variant="outline-warning"
-                        >Заблокировать
+                        >Блокировка
                         </Button>
 
                         <Button className="m-1"
                                 onClick={removeUsers}
                                 variant="outline-danger"
-                        >Удалить
+                        >Удаление
                         </Button>
                     </Nav>
                     <Button className="m-1"
@@ -42,4 +42,4 @@ export const NavBar: React.FC<NavBarType> = ({removeUsers, baneUsers}) => {
             </Navbar>
         </div>
     )
-}
+})
