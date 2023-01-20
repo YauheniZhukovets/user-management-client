@@ -1,24 +1,16 @@
-import React, {ChangeEvent, useCallback} from 'react';
+import React, {ChangeEvent} from 'react';
 import {UserItem} from "./UserItem";
 import {DomainUser} from "../interface/userIntarface";
 import {Container, Form, ListGroup} from "react-bootstrap";
-import {useAppSelector} from "../hooks/hooks";
 
 type UserListType = {
     users: DomainUser[]
+    masterChecked: boolean
+    onItemCheck: (e: ChangeEvent<HTMLInputElement>, item: DomainUser) => void
+    onMasterCheck: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const UserList: React.FC<UserListType> = React.memo(({users}) => {
-        const masterChecked = useAppSelector<boolean>(state => state.user.masterChecked)
-
-
-        const onMasterCheck = (e: ChangeEvent<HTMLInputElement>) => {
-
-        }
-
-        const onItemCheck = useCallback((id: number, e: ChangeEvent<HTMLInputElement>) => {
-
-        }, [])
+export const UserList: React.FC<UserListType> = React.memo(({users, masterChecked, onItemCheck, onMasterCheck}) => {
 
         return (
             <Container>

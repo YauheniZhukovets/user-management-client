@@ -1,5 +1,7 @@
-import {setIsLoggedIn} from "../actions/authAction";
+import {setIsLogin, setRegistrationIsCompleted} from "../actions/authAction";
 
-export type SetIsLoggedInType = ReturnType<typeof setIsLoggedIn>
-export type ActionAuthType = SetIsLoggedInType
+export type SetIsLoggedInType = ReturnType<typeof setIsLogin>
+export type SetRegistrationIsCompletedType = ReturnType<typeof setRegistrationIsCompleted>
+
+export type ActionAuthType = SetIsLoggedInType | SetRegistrationIsCompletedType
 

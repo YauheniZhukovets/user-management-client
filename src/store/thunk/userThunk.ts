@@ -1,18 +1,46 @@
 import {AxiosError} from "axios";
 import {AppThunk} from "../../type/StoreTypes";
-import {setError, setStatus} from "../actions/appAction";
+import {setError} from "../actions/appAction";
 import {setUsers} from "../actions/userAction";
-import {fetchUser} from "../../http/userAPI";
+import {blockUser, deleteUser, fetchUser} from "../../http/userAPI";
+import {logout} from "./authThunk";
 
 export const fetchUsers = (): AppThunk => async (dispatch) => {
-    dispatch(setStatus('loading'))
     try {
         const res = await fetchUser()
         dispatch(setUsers(res))
+        dispatch(setError(null))
     } catch (error) {
         const err = error as AxiosError
         dispatch(setError(err.message))
-    } finally {
-        dispatch(setStatus('succeeded'))
     }
 }
+
+export const banedUser = (id: number[]): AppThunk => async (dispatch, getState) => {
+    const userId = getState().user.userId
+    try {
+        await blockUser(id)
+        if (id.includes(userId!)) {
+            dispatch(logout())
+        }
+        dispatch(fetchUsers())
+        dispatch(setError(null))
+    } catch (error: any) {
+        dispatch(setError(error.response.data.message))
+    }
+}
+
+export const removeUser = (id: number[]): AppThunk => async (dispatch, getState) => {
+    const userId = getState().user.userId
+    try {
+        await deleteUser(id)
+        if (id.includes(userId!)) {
+            dispatch(logout())
+        }
+        dispatch(fetchUsers())
+        dispatch(setError(null))
+    } catch (error: any) {
+        dispatch(setError(error.response.data.message))
+    }
+}
+

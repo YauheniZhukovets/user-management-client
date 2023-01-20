@@ -4,7 +4,7 @@ import {Form, ListGroup} from "react-bootstrap";
 
 type UserItemType = {
     user: DomainUser
-    onItemCheck: (id: number, e: ChangeEvent<HTMLInputElement>) => void
+    onItemCheck: (e: ChangeEvent<HTMLInputElement>, item: DomainUser) => void
 }
 
 export const UserItem: React.FC<UserItemType> = React.memo(({onItemCheck, user}) => {
@@ -16,7 +16,7 @@ export const UserItem: React.FC<UserItemType> = React.memo(({onItemCheck, user})
                     <Form.Check
                         type="checkbox"
                         checked={user.isChecked}
-                        onChange={(e) => onItemCheck(user.id, e)}
+                        onChange={(e) => onItemCheck(e, user)}
                     />
                 </ListGroup.Item>
                 <ListGroup.Item style={{width: '5%'}}>{user.id}</ListGroup.Item>

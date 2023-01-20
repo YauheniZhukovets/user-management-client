@@ -1,8 +1,7 @@
-import {setMasterCheck, setUserCheck, setUsers} from "../actions/userAction";
+import {setUserId, setUsers} from "../actions/userAction";
 
 export type GetUsersType = ReturnType<typeof setUsers>
-export type SetMasterCheck = ReturnType<typeof setMasterCheck>
-export type SetUserCheck = ReturnType<typeof setUserCheck>
+export type SetUserIdType = ReturnType<typeof setUserId>
 
-export type ActionUserType = GetUsersType | SetMasterCheck | SetUserCheck
+export type ActionUserType = GetUsersType | SetUserIdType
 
