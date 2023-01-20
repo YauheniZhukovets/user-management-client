@@ -5,13 +5,14 @@ import {check, login, logOut, registration} from "../../http/authAPI";
 import {setUserId} from "../actions/userAction";
 
 export const signIn = (email: string, password: string): AppThunk => async (dispatch) => {
+    const date = new Date()
     try {
-        const date = new Date()
         const data: any = await login(email, password, date)
         dispatch(setUserId(data.id))
         dispatch(setIsLogin(true))
         dispatch(setError(null))
     } catch (error: any) {
+        console.log(error)
         dispatch(setError(error.response.data.message))
     }
 }

@@ -3,7 +3,6 @@ import {ActionAppType} from "../types/appType";
 
 const initialState = {
     error: null as NullAnd<string>,
-    status: null as NullAnd<string>,
     isInitialized: false
 }
 
@@ -13,9 +12,6 @@ export const appReducer = (state = initialState, action: ActionAppType): Initial
     switch (action.type) {
         case 'APP/SET-ERROR': {
             return {...state, error: action.error}
-        }
-        case 'APP/SET-STATUS': {
-            return {...state, status: action.status}
         }
         case 'APP/SET-IS-INITIALIZE': {
             return {...state, isInitialized: action.value}

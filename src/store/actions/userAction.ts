@@ -1,4 +1,4 @@
-import {User} from "../../interface/userIntarface";
+import {User} from "../../interface/userInterface";
 
 export const setUserId = (id: number) => {
     return {type: 'USER/SET-USER-ID', id} as const

@@ -6,7 +6,6 @@ import {ActionUserType} from "../store/types/userType";
 
 
 export type AppAction = ActionAuthType | ActionAppType | ActionUserType
-
 export type AppRootStateType = ReturnType<typeof store.getState>
 export type AppDispatch = ThunkDispatch<AppRootStateType, unknown, AppAction>
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateType, unknown, AppAction>

@@ -1,4 +1,4 @@
-import {DomainUser} from "../../interface/userIntarface";
+import {DomainUser} from "../../interface/userInterface";
 import {ActionUserType} from "../types/userType";
 import {NullAnd} from "../../type/NullAnd";
 

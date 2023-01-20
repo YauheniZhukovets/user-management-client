@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import {DomainUser} from "../interface/userIntarface";
+import {DomainUser} from "../interface/userInterface";
 import {Form, ListGroup} from "react-bootstrap";
 
 type UserItemType = {

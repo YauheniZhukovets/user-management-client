@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {UserList} from "../components/UserList";
 import {NavBar} from "../components/NavBar";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
-import {DomainUser} from "../interface/userIntarface";
+import {DomainUser} from "../interface/userInterface";
 import {banedUser, removeUser} from "../store/thunk/userThunk";
 
 export const Main = () => {

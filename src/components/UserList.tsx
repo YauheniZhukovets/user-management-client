@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import {UserItem} from "./UserItem";
-import {DomainUser} from "../interface/userIntarface";
+import {DomainUser} from "../interface/userInterface";
 import {Container, Form, ListGroup} from "react-bootstrap";
 
 type UserListType = {
