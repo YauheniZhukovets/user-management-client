@@ -17,7 +17,7 @@ export const fetchUsers = (): AppThunk => async (dispatch) => {
 }
 
 export const banedUser = (id: number[]): AppThunk => async (dispatch, getState) => {
-    const userId = getState().user.userId
+    const userId = getState().user.userData!.id
     try {
         await blockUser(id)
         if (id.includes(userId!)) {
@@ -31,7 +31,7 @@ export const banedUser = (id: number[]): AppThunk => async (dispatch, getState) 
 }
 
 export const removeUser = (id: number[]): AppThunk => async (dispatch, getState) => {
-    const userId = getState().user.userId
+    const userId = getState().user.userData!.id
     try {
         await deleteUser(id)
         if (id.includes(userId!)) {

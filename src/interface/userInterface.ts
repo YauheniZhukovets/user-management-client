@@ -11,3 +11,8 @@ export interface User {
 export interface DomainUser extends User {
     isChecked: boolean
 }
+
+export interface UserData {
+    id: number
+    email: string
+}

@@ -2,13 +2,13 @@ import {setIsLogin, setRegistrationIsCompleted} from "../actions/authAction";
 import {AppThunk} from "../../type/StoreTypes";
 import {setError, setIsInitialize} from "../actions/appAction";
 import {check, login, logOut, registration} from "../../http/authAPI";
-import {setUserId} from "../actions/userAction";
+import {setUserData} from "../actions/userAction";
 
 export const signIn = (email: string, password: string): AppThunk => async (dispatch) => {
     const date = new Date()
     try {
         const data: any = await login(email, password, date)
-        dispatch(setUserId(data.id))
+        dispatch(setUserData(data))
         dispatch(setIsLogin(true))
         dispatch(setError(null))
     } catch (error: any) {
@@ -31,7 +31,7 @@ export const register = (email: string, password: string, name: string): AppThun
 export const initializeMe = (): AppThunk => async (dispatch) => {
     try {
         const data: any = await check()
-        dispatch(setUserId(data.id))
+        dispatch(setUserData(data))
         dispatch(setIsLogin(true));
         dispatch(setError(null))
     } catch (error: any) {

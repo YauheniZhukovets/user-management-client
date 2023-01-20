@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {logout} from "../store/thunk/authThunk";
-import {useAppDispatch} from "../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 
 type NavBarType = {
     baneUsers: () => void
@@ -10,6 +10,7 @@ type NavBarType = {
 
 export const NavBar: React.FC<NavBarType> = React.memo(({removeUsers, baneUsers}) => {
     const dispatch = useAppDispatch()
+    const userEmail = useAppSelector(state => state.user.userData?.email)
 
     const logOut = () => {
         dispatch(logout())
@@ -33,6 +34,7 @@ export const NavBar: React.FC<NavBarType> = React.memo(({removeUsers, baneUsers}
                         >Удаление
                         </Button>
                     </Nav>
+                    <Navbar.Brand>{userEmail}</Navbar.Brand>
                     <Button className="m-1"
                             variant="outline-primary"
                             onClick={logOut}
